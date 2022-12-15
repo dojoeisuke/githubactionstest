@@ -30,6 +30,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'config'
+          skip-dirs: example/examplea
           hide-progress: false
           exit-code: '1'
           ignore-unfixed: true
