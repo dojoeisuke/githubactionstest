@@ -8,22 +8,26 @@ jobs:
     name: Checkov
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+          
       - name: Test with Checkov
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
           directory: example/examplea
-          framework: terraform 
-#      - name: Expose report
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: SARIF results
-#          path: results.sarif
+          framework: terraform
+          soft_fail: true
+      - name: Expose report
+        uses: actions/upload-artifact@v2
+        with:
+          name: SARIF results
+          path: results.sarif
       # Uploads results.sarif to GitHub repository using the upload-sarif action
       - name: Upload Checkov scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
