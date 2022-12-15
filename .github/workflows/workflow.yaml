@@ -20,14 +20,14 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: example/examplea
-          framework: terraform
+          directory: check-conf/k8s
+          framework: kubernetes
           soft_fail: true
-      - name: Expose report
-        uses: actions/upload-artifact@v2
-        with:
-          name: SARIF results
-          path: results.sarif
+#      - name: Expose report
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: SARIF results
+#          path: results.sarif
       # Uploads results.sarif to GitHub repository using the upload-sarif action
       - name: Upload Checkov scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
