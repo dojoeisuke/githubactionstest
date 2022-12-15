@@ -1,4 +1,4 @@
-resource "aws_efs_file_system" "sharedstore" {
+resource "aws_efs_file" "sharedstore" {
   creation_token = var.efs["creation_token"]
 
   lifecycle_policy {
